@@ -2,6 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const mysql = require('mysql')
+const bodyParser = require('body-parser')
 
 
 
@@ -46,14 +47,15 @@ function queryDB(query, queryParams = []) {
 app.use(morgan('dev'))
 app.use(cors())
 app.use(express.json())
-app.unsubscribe(express.urlencoded({extended: false}))
+// app.unsubscribe(express.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.get('/', (req, res) => {
-    res.json({text: 'API is in /api/tanks'})
+    res.json({text: 'API is in /api/tanques'})
 })
 
-app.get('/api/tanks', (req, res) => {
+app.get('/api/tanques', (req, res) => {
     // List all tanks
     queryDB('SELECT * FROM tanque')
     .then(result => {
@@ -64,9 +66,10 @@ app.get('/api/tanks', (req, res) => {
     })
 })
 
-i
-app.post('/api/tanks', (req, res) => {
+
+app.post('/api/tanques', (req, res) => {
     // Create one tank
+    console.log(req.body)
     queryDB('INSERT INTO tanque set ?', [req.body])
     .then(() => {
         res.json({message: 'Tanque creado'})
@@ -76,7 +79,21 @@ app.post('/api/tanks', (req, res) => {
     })
 })
 
-app.put('/api/tanks/:id', (req, res) => {
+app.get('/api/tanques/:id', (req, res) => {
+    // Update a tank
+    const { id } = req.params
+    
+    queryDB('SELECT * FROM tanque where idTanque = ?', [id])
+    .then((result) => {
+        res.json(result[0])
+    })
+    .catch(error => {
+        res.status(500).json(error)
+    })
+})
+
+
+app.put('/api/tanques/:id', (req, res) => {
     // Update a tank
     const { id } = req.params
     
@@ -89,7 +106,7 @@ app.put('/api/tanks/:id', (req, res) => {
     })
 })
 
-app.delete('/api/tanks/:id', (req, res) => {
+app.delete('/api/tanques/:id', (req, res) => {
     // Delete a tank
     const { id } = req.params;
     queryDB('DELETE FROM games WHERE id = ?', [id])
