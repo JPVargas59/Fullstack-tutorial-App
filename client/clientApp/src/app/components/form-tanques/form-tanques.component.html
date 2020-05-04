@@ -2,15 +2,18 @@
     <h1 *ngIf="idTanque">Tanque {{idTanque}}</h1>
     <h1 *ngIf="!idTanque">Nuevo Tanque</h1>
 </div>
-<form>
-    <div class="form-group">
+<form (submit)="onSubmit()">
+    <div class="form-group" *ngIf="!idTanque">
       <label for="idTanque">Id Tanque</label>
       <input type="text" class="form-control" id="idTanque" maxlength="11" [(ngModel)]="tanque.idTanque" name="idTanque">
     </div>
 
-    <div class="form-group">
+    <div class="form-group" *ngIf="!idTanque">
         <label for="fotoTanque">Foto Tanque</label>
         <input type="text" class="form-control" id="fotoTanque" [(ngModel)]="tanque.foto" name="foto">
+    </div>
+    <div class="form-group" *ngIf="idTanque">
+        <img [src]="tanque.foto" alt="">
     </div>
     
     <div class="form-group">

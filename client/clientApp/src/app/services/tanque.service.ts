@@ -24,4 +24,12 @@ export class TanqueService {
     return this.http.get(`${this.url}/${id}`) as Observable<Tanque>;
   }
 
+  setTanque(tanque) {
+    return this.http.post(this.url, tanque)
+  }
+
+  updateTanque(tanque) {
+    return this.http.put(`${this.url}/${tanque.idTanque}`, tanque)
+  }
+
 }

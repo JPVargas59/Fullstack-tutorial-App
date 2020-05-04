@@ -15,7 +15,9 @@
     </thead>
     <tbody>
         <tr (click)="tanqueSeleccionado = tanque" *ngFor="let tanque of tanques" routerLink="/tanques/{{tanque.idTanque}}">
-            <td>{{tanque.foto}}</td>
+            <td>
+                <img style="width: 10em;" [src]="tanque.foto" class="image">
+            </td>
             <td>{{tanque.idTanque}}</td>
             <td>{{tanque.calidad}}</td>
             <td>{{tanque.peso}}</td>

@@ -34,11 +34,7 @@ function queryDB(query, queryParams = []) {
             if (error) {
                 reject({error});
             }
-            if (results && results.length > 0) {
-                resolve(results);
-            } else {
-                reject({result: 'Query found 0 results'})
-            }
+            resolve(results);
         });
     });
 }
@@ -97,6 +93,7 @@ app.put('/api/tanques/:id', (req, res) => {
     // Update a tank
     const { id } = req.params
     
+    console.log(req.body)
     queryDB('UPDATE tanque set ? where idTanque = ?', [req.body, id])
     .then(() => {
         res.json({message: `Tanque ${id} actualizado`})

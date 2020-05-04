@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Tanque from 'src/app/models/Tanque';
 
 import { TanqueService } from 'src/app/services/tanque.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-tanques',
@@ -24,7 +24,8 @@ export class FormTanquesComponent implements OnInit {
 
   constructor(
     private db: TanqueService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +34,21 @@ export class FormTanquesComponent implements OnInit {
       // GET Tanque por ID
       this.db.getTanque(this.idTanque).subscribe(tanque => {
         this.tanque = tanque;
+      })
+    }
+  }
+
+  onSubmit() {
+    console.log('Onsubmit')
+    if (this.idTanque) {
+      this.db.updateTanque(this.tanque).subscribe(() =>{
+        alert('Tanque actualizado con éxtio')
+        this.router.navigateByUrl('/tanques');
+      })
+    } else {
+      this.db.setTanque(this.tanque).subscribe(() => {
+        alert('Tanque creado con éxito');
+        this.router.navigateByUrl('/tanques');
       })
     }
   }
