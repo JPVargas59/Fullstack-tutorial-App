@@ -1,1 +1,43 @@
-<p>form-tanques works!</p>
+<div class="jumbotron">
+    <h1 *ngIf="idTanque">Tanque {{idTanque}}</h1>
+    <h1 *ngIf="!idTanque">Nuevo Tanque</h1>
+</div>
+<form>
+    <div class="form-group">
+      <label for="idTanque">Id Tanque</label>
+      <input type="text" class="form-control" id="idTanque" maxlength="11" [(ngModel)]="tanque.idTanque" name="idTanque">
+    </div>
+
+    <div class="form-group">
+        <label for="fotoTanque">Foto Tanque</label>
+        <input type="text" class="form-control" id="fotoTanque" [(ngModel)]="tanque.foto" name="foto">
+    </div>
+    
+    <div class="form-group">
+        <label for="calidad">Calidad Tanque</label>
+        <input type="text" class="form-control" id="calidad" [(ngModel)]="tanque.calidad" name="calidad">
+    </div>
+
+    <div class="form-group">
+        <label for="peso">Peso Tanque</label>
+        <input type="number" class="form-control" id="peso" [(ngModel)]="tanque.peso" name="peso">
+    </div>
+
+    <div class="form-group">
+        <label for="fecha">Fecha retorno Tanque</label>
+        <input type="datetime" class="form-control" id="fecha" [(ngModel)]="tanque.fechaEsperadaRetorno" name="fecha">
+    </div>
+
+    <div class="form-group">
+        <label for="etiqueta">Etiqueta Tanque</label>
+        <input type="number" class="form-control" id="etiqueta" maxlength="3" [(ngModel)]="tanque.idEtiqueta" name="idEtiqueta">
+    </div>
+    
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <pre>
+      {{tanque | json}}
+  </pre>

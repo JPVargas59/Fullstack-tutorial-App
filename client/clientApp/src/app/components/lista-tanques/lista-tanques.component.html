@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let tanque of tanques" routerLink="/tanques/{{tanque.idTanque}}">
+        <tr (click)="tanqueSeleccionado = tanque" *ngFor="let tanque of tanques" routerLink="/tanques/{{tanque.idTanque}}">
             <td>{{tanque.foto}}</td>
             <td>{{tanque.idTanque}}</td>
             <td>{{tanque.calidad}}</td>
@@ -25,5 +25,6 @@
     </tbody>
 </table>
 
-
-{{tanques[0] | json }}
+<pre>
+    {{ tanqueSeleccionado | json }}
+</pre>

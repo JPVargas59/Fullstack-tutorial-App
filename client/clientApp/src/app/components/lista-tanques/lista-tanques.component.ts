@@ -11,6 +11,7 @@ import { TanqueService } from 'src/app/services/tanque.service';
 export class ListaTanquesComponent implements OnInit {
 
   tanques: any = [];
+  tanqueSeleccionado: Tanque;
 
   constructor(
     private db: TanqueService

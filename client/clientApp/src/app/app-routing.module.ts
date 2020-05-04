@@ -6,7 +6,8 @@ import { FormTanquesComponent } from './components/form-tanques/form-tanques.com
 const routes: Routes = [
   { path: '', redirectTo: 'tanques', pathMatch: 'full' },
   { path: 'tanques', component: ListaTanquesComponent },
-  { path: 'tanques/nuevo', component: FormTanquesComponent }
+  { path: 'tanques/nuevo', component: FormTanquesComponent },
+  { path: 'tanques/:id', component: FormTanquesComponent }
 ];
 
 @NgModule({

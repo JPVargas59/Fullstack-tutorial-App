@@ -8,6 +8,8 @@ import { FormTanquesComponent } from './components/form-tanques/form-tanques.com
 import { HttpClientModule } from '@angular/common/http';
 import { TanqueService } from './services/tanque.service';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,11 +19,13 @@ import { TanqueService } from './services/tanque.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     TanqueService
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
