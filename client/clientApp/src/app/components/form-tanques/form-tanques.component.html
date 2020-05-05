@@ -8,12 +8,15 @@
       <input type="text" class="form-control" id="idTanque" maxlength="11" [(ngModel)]="tanque.idTanque" name="idTanque">
     </div>
 
-    <div class="form-group" *ngIf="!idTanque">
+    <div class="form-group" *ngIf="!tanque.foto">
         <label for="fotoTanque">Foto Tanque</label>
         <input type="text" class="form-control" id="fotoTanque" [(ngModel)]="tanque.foto" name="foto">
     </div>
-    <div class="form-group" *ngIf="idTanque">
-        <img [src]="tanque.foto" alt="">
+    <div class="form-group" *ngIf="tanque.foto">
+        <img [src]="tanque.foto" alt="" style="width: 10em">
+        <br>
+        <br>
+        <button class="btn btn-primary" (click)="tanque.foto = undefined">Cambiar foto</button>
     </div>
     
     <div class="form-group">
@@ -28,7 +31,7 @@
 
     <div class="form-group">
         <label for="fecha">Fecha retorno Tanque</label>
-        <input type="datetime" class="form-control" id="fecha" [(ngModel)]="tanque.fechaEsperadaRetorno" name="fecha">
+        <input type="datetime-local" class="form-control" id="fecha" [(ngModel)]="tanque.fechaEsperadaRetorno" name="fecha">
     </div>
 
     <div class="form-group">
@@ -38,9 +41,14 @@
     
 
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-success btn-block">
+        {{idTanque ? 'Enviar cambios' : 'Guardar nuevo tanque'}}
+    </button>
   </form>
 
+
+  <h1>Info tanque</h1>
+  <p>Aqui puedes ver el json que se genera conforme vas llenando el form</p>
   <pre>
       {{tanque | json}}
   </pre>

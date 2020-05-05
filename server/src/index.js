@@ -32,6 +32,7 @@ function queryDB(query, queryParams = []) {
     return new Promise((resolve, reject) => {
         pool.query(query, queryParams, (error, results, fields) => {
             if (error) {
+                console.log(error);
                 reject({error});
             }
             resolve(results);

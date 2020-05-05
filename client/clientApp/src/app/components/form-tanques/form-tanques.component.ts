@@ -34,6 +34,13 @@ export class FormTanquesComponent implements OnInit {
       // GET Tanque por ID
       this.db.getTanque(this.idTanque).subscribe(tanque => {
         this.tanque = tanque;
+
+        const fecha = new Date(tanque.fechaEsperadaRetorno)
+        
+        const fechaRetorno = fecha.toISOString().substring(0, 16)
+
+        this.tanque.fechaEsperadaRetorno = fechaRetorno
+
       })
     }
   }
